@@ -11,19 +11,15 @@ Quickstart:
 1) run the command
 python startServer.py
 
-2) open a browser and navigate to
+2) open a browser and type in the address bar
 http://localhost:8000/index.html
-Do NOT open the index.html file by double clicking it.
+Do NOT open the page by double clicking index.html in the file explorer.
 
-3) answer the demo questions to get a feel for the app.
+3) answer the demo questions to get a feel for the app. Note that there
+is a .json file saved in the same folder as questions.js which contains
+the responses to the questions.
 
-4) see that there is a file created in the same folder as
-startServer.py with an extension .json, which contains the
-responses.
-
-5) edit questions.js - This file contains comments to
-assis with the process of creating the questions and
-conditions for showing or not showing a page.
+4) Edit questions.js
 
 
 
@@ -34,16 +30,31 @@ conditions for showing or not showing a page.
 To change the style of the page, or the framework,
 edit index.html
 
-The .json filename format can be changed on line 359 of index.html
-eg currently it saves the file as
-'Username - Vehicle.json'
-But if you were doing, say, wines you may want a filename like
-'Username - Wine name - Vintage.json'
-in which case you would set filenameIdentifiers to
-["Wine name", "Vintage"]
-where the title of the two relevant pages would be "Wine Name" and
-"Vintage" and the filename would contain the responses to those
-two questions.
+
+
+There are a few different input types available:
+
+shorttext - freeform text around 20 characters max. In practice it's not
+actually limited, but it's a bit cumbersome to edit lots of text in this
+input type.
+
+radiobuttons - a list of predefined options where only one can be chosen.
+
+numeric - like shorttext but for numbers. No checking is done, so the
+user can still enter non-numeric input, but on mobile devices this will
+show the number keyboard by default rather than the text keyboard.
+
+checkboxes - a list of predefined options where multiple options may be
+valid.
+
+longtext - like shorttext but allows for more input to be shown on the
+screen.
+
+noInput - if there's no input (eg instructions or story-telling) this
+is the input type to use.
+
+
+
 
 report bugs by visiting the page at
 https://github.com/thedawnrider/WebQuestioner

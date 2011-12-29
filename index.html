@@ -50,28 +50,32 @@
         <script type="text/javascript">
 
             //TODO don't display Prev button on first page
-
+			
+			var sessionId = 0;/*sessionId*/ /*generated server-side*/
+			
             var pages = [];
             var responses = {};
             var currentPageIndex = -1;
-
+			
+			var alwaysAsk = {}; //so the user can set conditions = alwaysAsk; - just is easier to read
+			
             function addPage(title, explanation, options, inputType, conditions) {
                 var thisPage = document.createElement("div");
                                 
                 var titleDiv = document.createElement("div");
                 var titleText = document.createElement("h1");
                 if(title && title.length > 0) {
-                    titleText.innerText = title;
+                    titleText.textContent = title;
                 }
                 else {
-                    titleText.innerText = "&nbsp";
+                    titleText.textContent = "&nbsp";
                 }
                 titleDiv.className = "title";
                 titleDiv.appendChild(titleText);
                 thisPage.appendChild(titleDiv);
                 
                 var explanationDiv = document.createElement("div");
-                explanationDiv.innerText = explanation;
+                explanationDiv.textContent = explanation;
                 explanationDiv.className = "explanation";
                 thisPage.appendChild(explanationDiv);
                 
@@ -91,7 +95,7 @@
                 //must meet the conditions or it will not be displayed, it will move to the next one.
                 
                 var display = document.getElementById("display");
-                display.innerText = ""; //nasty way to clear the element
+                display.textContent = ""; //nasty way to clear the element
                 
                 if(e && e.target && e.target.getAttribute("navigateBackwards") == "true") {
                     currentPageIndex = currentPageIndex - 1;
@@ -162,7 +166,7 @@
                             input.addEventListener("change", saveRadiobuttonsInput, false);
                             inputDiv.appendChild(input);
                             var label = document.createElement("label");
-                            label.innerText = options[i];
+                            label.textContent = options[i];
                             label.setAttribute("for", id);
                             label.setAttribute("onclick", ""); //For mobile safari - see http://forums.macrumors.com/showthread.php?t=785632
                             inputDiv.appendChild(label);
@@ -191,7 +195,7 @@
                             input.addEventListener("change", saveCheckboxesInput, false);
                             inputDiv.appendChild(input);
                             var label = document.createElement("label");
-                            label.innerText = options[i];
+                            label.textContent = options[i];
                             label.setAttribute("for", id);
                             label.setAttribute("onclick", ""); //For mobile safari - see http://forums.macrumors.com/showthread.php?t=785632
                             inputDiv.appendChild(label);
@@ -211,7 +215,7 @@
                         break;
                         
                     default:
-                        inputDiv.innerText = "Unrecognised input type - " + inputType;
+                        inputDiv.textContent = "Unrecognised input type - " + inputType;
                         break;
                 }
                 
@@ -246,7 +250,7 @@
             
             function createFooterButton(text) {
                 var button = document.createElement("button");
-                button.innerText = text;
+                button.textContent = text;
                 button.className = "footerButton";
                 button.addEventListener('click', transitionPage, false);
                 return button
@@ -337,7 +341,12 @@
                 if (username!=null && username!="") {
                     setCookie("username",username);
                 }
-                responses['username'] = username;
+				if(username != "") {
+					responses['username'] = username;
+				}
+				else {
+					responses['username'] = "NoUsernameProvided";
+				}
             }
 
 
@@ -356,13 +365,18 @@
             function createServerContent() {
                 var toServer = {};
                 var content = "";
-                var filenameIdentifiers = ["Vehicle"]; //The responses to include in the filename
-                if(canCreateFilenameFromResponses(filenameIdentifiers)) {
-                    toServer['filename'] = createFilename(filenameIdentifiers);
-                    toServer['time'] = new Date().getTime();
-                    toServer['jsonData'] = responses;
-                    content = JSON.stringify(toServer);
-                }
+				toServer['time'] = new Date().getTime();
+				toServer['jsonData'] = responses;
+				toServer['sessionId'] = sessionId;
+				toServer['filename'] = responses['username'] + " - " + sessionId + ".json";
+				
+				if(filenameIdentifiers) {
+					if(canCreateFilenameFromResponses(filenameIdentifiers)) {
+						toServer['filename'] = createFilename(filenameIdentifiers);
+					}
+				}
+				
+				content = JSON.stringify(toServer);
                 return content;
             }
 
@@ -372,7 +386,7 @@
                     var key = identifiers[i];
                     filename += " - " + responses[key];
                 }
-                filename += ".json";
+                filename += " - " + sessionId + ".json";
                 return filename;
             }
 
