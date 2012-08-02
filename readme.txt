@@ -1,10 +1,14 @@
 Web Questioner
-v0.1
-2011-12-26
+v0.1.1
+2012-08-02
 Author: Ian Coleman
 
-Web Questioner is a tool to create a series of questions, where
-the next question displayed depends on the previous responses.
+Web Questioner is a web-based questionnaire, originally created as
+a simple but flexible way to record notes from wine-tasting. The goals
+are to:
+- Make it easy to build custom questionaires
+- Make the next question asked vary depending on the previous responses
+- Save the responses in a useful format for any potential future use
 
 Quickstart:
     
@@ -17,18 +21,12 @@ Do NOT open the page by double clicking index.html in the file explorer.
 
 3) answer the demo questions to get a feel for the app. Note that there
 is a .json file saved in the same folder as questions.js which contains
-the responses to the questions.
+your responses to the questions.
 
-4) Edit questions.js
-
-
+4) Edit questions.js to suit your needs
 
 
 
-
-
-To change the style of the page, or the framework,
-edit index.html
 
 
 
@@ -53,6 +51,31 @@ screen.
 noInput - if there's no input (eg instructions or story-telling) this
 is the input type to use.
 
+
+
+
+
+Because this is a web-based tool it can be used concurrently by
+many people. This was desirable in the original wine-tasting
+context, as wine-tasting often happens in groups, so all
+members of the group can use their phone/tablet to make their own
+notes at the same time. This led to the need to distinguish
+between each others notes, and thus the questioner stores the
+name of each user in the filename to help identify the response files
+they generate.
+A unique session ID is also stored in each file in case the same wine
+is tasted again at a later date, making no chance of overwriting
+the old records.
+
+Technical Notes:
+A script oriented rather than object oriented approach has been used
+for the sole reason of maximising non-code content in the
+questions.js file. The target user for this application has
+no code experience, so even simple additions such as 'var'
+and 'new' will create potential for confusion. As such, the
+questions.js is absolutely bare as possible, using what some may
+consider bad practice (globals etc); however for the use-case this
+was the most appropriate way to achieve the goal.
 
 
 

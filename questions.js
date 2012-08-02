@@ -1,101 +1,100 @@
-//This is where the questions and the logic of what questions to ask
-//is set.
-//
-//The order that the questions as written here is the order they will be
-//displayed.
-//
-//Use the 'conditions' parameter for each page to say whether
-//that page should be displayed or not based on previous responses.
-//
-//
-// The parameters to be set for each question is:
-//
-// title - eg "Vehicle" - NOTE: title must be unique,
-//         don't have 'Colour' as the title for the page of,
-//         say, the colour of a car, and 'Colour' later
-//         as the title of, say, the colour of the car interior.
-//         Instead use 'Car Colour' and 'Interior Colour' as
-//         the titles.
-//
-// explanation - this explains what the user is responding to
-//               eg "What type of vehicle do you use".
-//
-// options - eg ["Car", "Bike", "Plane"] - for freeform text input
-//           use [], ie no options
-//
-// input type - eg "radiobuttons", select from
-//              radiobuttons
-//              checkboxes
-//              shorttext
-//              longtext
-//              numeric
-//              noInput
-//
-// conditions (optional) - only shows the page if KeyN equals ValN,
-// eg a page with condition {'Vehicle': 'Bike', 'Brand': 'Honda'}
-// would only be shown if the user had previously answered
-// 'Bike' to the question titled 'Vehicle' and 'Honda'
-// to the question titled 'Brand'. If the user did not respond
-// with these specific answers, this page will not be displayed.
-// Use alwaysAsk if this question should always be displayed.
+// Edit this file to suit your own needs. You must include
+// all five parts of the question - title, explanation, options,
+// inputType and conditions.
 
 
-var filenameIdentifiers = ["Vehicle"]; //The values of responses to include in the filename
 
-title = "Welcome";
-explanation = "Your responses are autosaved to the folder with the server script as you go. Press next to continue";
-options = [];
-inputType = "noInput";
-conditions = alwaysAsk;
-addPage(title, explanation, options, inputType, conditions);
+// The filename which these responses are stored in will include
+// one of the answers to the questions below. This makes
+// it easier to identify that file.
+var filenameIdentifiers = ["Filename Identifier"]; //this is the title of q2, so the
+                                                   //response to q2 will be in the filename
+q1 = {
+    "title": "Welcome",
+    "explanation": "Your responses are autosaved to the folder with the server script as you go. Press next to continue",
+    "options": [],
+    "inputType": "noInput",
+    "conditions": alwaysAsk
+}
+addPage(q1);
 
-title = "Vehicle";
-explanation = "What type of vehicle do you use?";
-options = ["Car", "Bike", "Plane"];
-inputType = "radiobuttons";
-conditions = alwaysAsk;
-addPage(title, explanation, options, inputType, conditions);
+q2 = {
+    "title": "Filename Identifier",
+    "explanation": "What word/phrase should be used in the filename for this particular set of responses?",
+    "options": [],
+    "inputType": "shorttext",
+    "conditions": alwaysAsk
+}
+addPage(q2);
 
-title = "Shape";
-explanation = "What shape is your car?";
-options = [];
-inputType = "shorttext";
-conditions = {"Vehicle": "Car"};
-addPage(title, explanation, options, inputType, conditions);
+q3 = {
+    "title": "Wine Label",
+    "explanation": "Do You Know What The Wine You're Tasting Is?",
+    "options": ["Yes", "No- Blind Tasting"],
+    "inputType": "radiobuttons",
+    "conditions": alwaysAsk
+}
+addPage(q3);
 
-title = "Engine Count";
-explanation = "How many engines does your plane have?";
-options = [];
-inputType = "numeric";
-conditions = {"Vehicle": "Plane"};
-addPage(title, explanation, options, inputType, conditions);
+q4 = {
+    "title": "Wine Label Information",
+    "explanation": "What Country is the Wine from?",
+    "options": ["France", "Spain", "Italy", "Australia", "New Zealand", "USA", "Argentina", "Chile", "Germany", "Other"],
+    "inputType": "radiobuttons",
+    "conditions": {"Wine Label": "Yes"}
+}
+addPage(q4);
 
-title = "Custom Parts";
-explanation = "What parts on your bike have been customised?";
-options = ["Exhaust", "Mirrors", "Lights", "Suspension"];
-inputType = "checkboxes";
-conditions = {"Vehicle": "Bike"};
-addPage(title, explanation, options, inputType, conditions);
+q5 = {
+    "title": "Appearance",
+    "explanation": "How Do You Describe The Wines Clarity?",
+    "options": ["Bright", "Dull", "Clear", "Hazy"],
+    "inputType": "radiobuttons",
+    "conditions": {"Wine Label": "No- Blind Tasting"}
+}
+addPage(q5);
 
-title = "Custom Parts";
-options = ["Bodywork",  "Engine work", "Tinted windows", "Seats"];
-explanation = "What parts of your car have been customised?";
-inputType = "checkboxes";
-conditions = {"Vehicle": "Car"};
-addPage(title, explanation, options, inputType, conditions);
+q6 = {
+    "title": "Intensity",
+    "explanation": "Describing the Wines Intensity",
+    "options": ["Pale", "Medium (-)", "Medium", "Medium (+)", "Deep"],
+    "inputType": "radiobuttons",
+    "conditions": alwaysAsk
+}
+addPage(q6);
 
-title = "Exhaust Brand";
-explanation = "What brand is your custom bike exhaust?";
-options = ["Akrapovic", "Yoshimura", "Termigoni", "Blue Devil", "Leo Vince", "Handmade"];
-inputType = "radiobuttons";
-conditions = {"Vehicle": "Bike", "Custom Parts": "Exhaust"}; //Both conditions must be met
-addPage(title, explanation, options, inputType, conditions);
+q7 = {
+    "title": "Colour",
+    "explanation": "What is the Wines Colour",
+    "options": ["White", "Rose", "Red"],
+    "inputType": "radiobuttons",
+    "conditions": alwaysAsk
+}
+addPage(q7);
 
-title = "Notes";
-explanation = "Write some general notes on your vehicle";
-options = [];
-inputType = "longtext";
-conditions = alwaysAsk;
-addPage(title, explanation, options, inputType, conditions);
+q8 = {
+    "title": "White Colour Detailed",
+    "explanation": "Describe the colour in the glass?",
+    "options": ["lemon-green", "lemon", "gold", "amber", "brown"],
+    "inputType": "radiobuttons",
+    "conditions": {"Colour": "White"}
+}
+addPage(q8);
 
-//The end page is shown automatically, you don't need to add it.
+q9 = {
+    "title": "Mouth Feel",
+    "explanation": "Describe the feeling in the mouth:",
+    "options": ["Soft", "Dry", "Acidic", "Lumpy", "Cooling"],
+    "inputType": "checkboxes",
+    "conditions": alwaysAsk
+}
+addPage(q9);
+
+q10 = {
+    "title": "Closing Notes",
+    "explanation": "Any final notes not covered yet?",
+    "options": [],
+    "inputType": "longtext",
+    "conditions": alwaysAsk
+}
+addPage(q10);
