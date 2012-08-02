@@ -67,17 +67,4 @@ A unique session ID is also stored in each file in case the same wine
 is tasted again at a later date, making no chance of overwriting
 the old records.
 
-Technical Notes:
-A script oriented rather than object oriented approach has been used
-for the sole reason of maximising non-code content in the
-questions.js file. The target user for this application has
-no code experience, so even simple additions such as 'var'
-and 'new' will create potential for confusion. As such, the
-questions.js is absolutely bare as possible, using what some may
-consider bad practice (globals etc); however for the use-case this
-was the most appropriate way to achieve the goal.
 
-
-
-report bugs by visiting the page at
-https://github.com/thedawnrider/WebQuestioner
