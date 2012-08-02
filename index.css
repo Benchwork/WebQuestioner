@@ -20,6 +20,7 @@
 .buttons
 {
     width: 100%;
+    position: fixed;
 }
 
 .wellSpacedInput
@@ -30,5 +31,5 @@
 .footerButton
 {
     position: fixed;
-    top: 5;
+    top: 5px;
 }

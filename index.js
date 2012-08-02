@@ -77,7 +77,7 @@ function transitionPage(e) {
             var  poweredBy = document.createElement("div");
             poweredBy.innerHTML = "Powered by <a href='https://github.com/thedawnrider/WebQuestioner'>Web Questioner</a>";
             poweredBy.style.position = "absolute";
-            poweredBy.style.bottom = 5;
+            poweredBy.style.bottom = "5px";
             display.appendChild(poweredBy);
         }
 
@@ -209,13 +209,13 @@ function createFooterButtons() {
 function createPrevButton() {
     var prevButton = createFooterButton("Prev");
     prevButton.setAttribute("navigateBackwards", true);
-    prevButton.style.left = 5;
+    prevButton.style.left = "5px";
     return prevButton;
 }
 
 function createNextButton() {
     var nextButton = createFooterButton("Next");
-    nextButton.style.right = 5;
+    nextButton.style.right = "5px";
     return nextButton;
 }
 
