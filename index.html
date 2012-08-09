@@ -9,7 +9,7 @@
     </head>
     <body>
         
-        <div id="display"></div>
+        <div id="content"></div>
 
         <!-- TODO order of script loading is not necessarily as displayed here, but is important -->
         <script type="text/javascript" src="index.js"></script>
@@ -17,12 +17,12 @@
         <script type="text/javascript" src="questions.js"></script>
 
         <script type="text/javascript">
-            
-            var sessionId = 0;/*sessionId*/ /*generated server-side*/
-            
+
             checkForLocallyStoredUsername();
-            transitionPage();
 
         </script>
+
+        <!-- uncomment to run test suite -->
+        <!--<script type="text/javascript" src="tests.js"></script>-->
     </body>
 </html>

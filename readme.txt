@@ -1,6 +1,6 @@
 Web Questioner
-v0.1.1
-2012-08-02
+v0.1.2
+2012-08-09
 Author: Ian Coleman
 
 Web Questioner is a web-based questionnaire, originally created as
@@ -32,23 +32,23 @@ your responses to the questions.
 
 There are a few different input types available:
 
-shorttext - freeform text around 20 characters max. In practice it's not
+Shorttext - freeform text around 20 characters max. In practice it's not
 actually limited, but it's a bit cumbersome to edit lots of text in this
 input type.
 
-radiobuttons - a list of predefined options where only one can be chosen.
+Longtext - like shorttext but allows for more input to be shown on the
+screen.
 
-numeric - like shorttext but for numbers. No checking is done, so the
+Numeric - like shorttext but for numbers. No checking is done, so the
 user can still enter non-numeric input, but on mobile devices this will
 show the number keyboard by default rather than the text keyboard.
 
-checkboxes - a list of predefined options where multiple options may be
+Radiobuttons - a list of predefined options where only one can be chosen.
+
+Checkboxes - a list of predefined options where multiple options may be
 valid.
 
-longtext - like shorttext but allows for more input to be shown on the
-screen.
-
-noInput - if there's no input (eg instructions or story-telling) this
+Instruction - if there's no input (eg instructions or story-telling) this
 is the input type to use.
 
 
@@ -63,8 +63,5 @@ notes at the same time. This led to the need to distinguish
 between each others notes, and thus the questioner stores the
 name of each user in the filename to help identify the response files
 they generate.
-A unique session ID is also stored in each file in case the same wine
-is tasted again at a later date, making no chance of overwriting
-the old records.
 
 
