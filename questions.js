@@ -18,6 +18,11 @@ quiz.add_question(
     .explanation("Your responses are autosaved to the folder with the server script as you go. Press next to continue"));
 
 quiz.add_question(
+    new ShorttextQuestion()
+    .title("Some Context")
+    .explanation("In one word, how are you feeling prior to this tasting?"));
+
+quiz.add_question(
     new NumericQuestion()
     .title("Vintage")
     .explanation("Which year was this wine produced?"));
