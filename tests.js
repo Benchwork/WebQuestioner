@@ -38,6 +38,102 @@ var tests = new test_suite();
  * UNIT TESTS
  */
 
+/* Quiz tests */
+
+tests.add_test(
+    new test(
+        "Quiz.add_question()",
+        function() {
+            var q = new Quiz();
+            var p = new Instruction();
+            q.add_question(p);
+            return q.questions.length == 1;
+        }
+    )
+);
+
+tests.add_test(
+    new test(
+        "Quiz.add_questions()",
+        function() {
+            var q = new Quiz();
+            var p1 = new Instruction();
+            var p2 = new Instruction();
+            q.add_questions([p1, p2]);
+            return q.questions.length == 2;
+        }
+    )
+);
+
+tests.add_test(
+    new test(
+        "Quiz.start()",
+        function() {
+            var q = new Quiz();
+            p = new Page();
+            var test_string = "This is a random title";
+            p.title(test_string)
+            q.add_question(p);
+            q.start();
+            var page_content = document.getElementById("content").innerHTML;
+            return page_content.indexOf(test_string) > -1;
+        }
+    )
+);
+
+tests.add_test(
+    new test(
+        "Quiz.next()",
+        function() {
+            var q = new Quiz();
+            p1 = new Page();
+            p2 = new Page();
+            var test_string1 = "This is the first title";
+            var test_string2 = "This is the second title";
+            p1.title(test_string1);
+            p2.title(test_string2);
+            q.add_questions([p1, p2]);
+            q.start();
+            q.next();
+            var page_content = document.getElementById("content").innerHTML;
+            return page_content.indexOf(test_string2) > -1;
+        }
+    )
+);
+
+tests.add_test(
+    new test(
+        "Quiz.prev()",
+        function() {
+            var q = new Quiz();
+            p1 = new Page();
+            p2 = new Page();
+            var test_string1 = "This is the first title";
+            var test_string2 = "This is the second title";
+            p1.title(test_string1);
+            p2.title(test_string2);
+            q.add_questions([p1, p2]);
+            q.start();
+            q.next();
+            q.prev();
+            var page_content = document.getElementById("content").innerHTML;
+            return page_content.indexOf(test_string1) > -1;
+        }
+    )
+);
+
+//TODO
+// get_next_question_index
+// get_prev_question_index
+// is_valid_question
+// display_current_question
+// display_closing_statement
+// display_next_button
+// display_previous_button
+// save_question_to_server
+// find_voided_responses
+
+
 /* Page tests */
 
 tests.add_test(
@@ -212,9 +308,12 @@ tests.add_test(
     )
 );
 
+//Quiz.start() Quiz.next() Quiz.prev() with no questions
+//Quiz.next() more times than there are questions
+//Quiz.prev() from the first page
+
 /* TODO TEST
  * Multiple questions don't conflict with each other
- * Quiz unit tests
  * Ajax tests
  * server side tests, in a different file
  */

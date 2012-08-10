@@ -7,8 +7,11 @@ function Quiz() {
     this.add_question = function(question) {
         question.quiz = this;
         this.questions.push(question)
-        if (this.questions.length == 1) {
-            this.start();
+    }
+
+    this.add_questions = function(question_array) {
+        for (var i=0,len=question_array.length; i<len; i++) {
+            this.add_question(question_array[i]);
         }
     }
 
@@ -19,7 +22,7 @@ function Quiz() {
 
     this.next = function() {
         this.current_question_index = this.get_next_question_index();
-        if(this.current_question_index < this.questions.length - 1) {
+        if(this.current_question_index < this.questions.length) {
             this.display_current_question();
         }
         else {
@@ -34,7 +37,10 @@ function Quiz() {
 
     this.get_next_question_index = function() {
         var next_index = this.current_question_index + 1;
-        while (!(this.is_valid_question(next_index))) {
+        while (
+            !(this.is_valid_question(next_index)) &&
+            next_index < this.questions.length)
+        {
             next_index = next_index + 1;
         }
         return next_index;
@@ -50,6 +56,9 @@ function Quiz() {
 
     this.is_valid_question = function(index_to_check) {
         /* Conditions are OR - only one must be met to be true */
+        if(index_to_check >= this.questions.length || index_to_check < 0) {
+            return false;
+        }
         var conditions = this.questions[index_to_check].conditions();
         var is_valid = Object.keys(conditions).length == 0;
         for (var condition_key in conditions) {

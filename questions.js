@@ -12,67 +12,62 @@
 
 var quiz = new Quiz();
 
-quiz.add_question(
-    new Instruction()
-    .title("Welcome")
-    .explanation("Your responses are autosaved to the folder with the server script as you go. Press next to continue"));
+quiz.add_questions([
 
-quiz.add_question(
-    new ShorttextQuestion()
-    .title("Some Context")
-    .explanation("In one word, how are you feeling prior to this tasting?"));
+new Instruction()
+.title("Welcome")
+.explanation("Your responses are autosaved to the folder with the server script as you go. Press next to continue"),
 
-quiz.add_question(
-    new NumericQuestion()
-    .title("Vintage")
-    .explanation("Which year was this wine produced?"));
+new ShorttextQuestion()
+.title("Some Context")
+.explanation("In one word, how are you feeling prior to this tasting?"),
 
-quiz.add_question(
-    new RadiobuttonsQuestion()
-    .title("Wine Label")
-    .explanation("Do You Know What The Wine You're Tasting Is?")
-    .options(["Yes", "No - Blind Tasting"]));
+new NumericQuestion()
+.title("Vintage")
+.explanation("Which year was this wine produced?"),
 
-quiz.add_question(
-    new RadiobuttonsQuestion()
-    .title("Wine Label Information")
-    .explanation("What Country is the Wine from?")
-    .options(["France", "Spain", "Italy", "Australia", "New Zealand", "USA", "Argentina", "Chile", "Germany", "Other"])
-    .conditions({"Wine Label": "Yes"}));
+new RadiobuttonsQuestion()
+.title("Wine Label")
+.explanation("Do You Know What The Wine You're Tasting Is?")
+.options(["Yes", "No - Blind Tasting"]),
 
-quiz.add_question(
-    new RadiobuttonsQuestion()
-    .title("Appearance")
-    .explanation("How Do You Describe The Wines Clarity?")
-    .options(["Bright", "Dull", "Clear", "Hazy"])
-    .conditions({"Wine Label": "No - Blind Tasting"}));
+new RadiobuttonsQuestion()
+.title("Wine Label Information")
+.explanation("What Country is the Wine from?")
+.options(["France", "Spain", "Italy", "Australia", "New Zealand", "USA", "Argentina", "Chile", "Germany", "Other"])
+.conditions({"Wine Label": "Yes"}),
 
-quiz.add_question(
-    new RadiobuttonsQuestion()
-    .title("Intensity")
-    .explanation("Describing the Wines Intensity")
-    .options(["Pale", "Medium (-)", "Medium", "Medium (+)", "Deep"]));
+new RadiobuttonsQuestion()
+.title("Appearance")
+.explanation("How Do You Describe The Wines Clarity?")
+.options(["Bright", "Dull", "Clear", "Hazy"])
+.conditions({"Wine Label": "No - Blind Tasting"}),
 
-quiz.add_question(
-    new RadiobuttonsQuestion()
-    .title("Colour")
-    .explanation("What is the Wines Colour")
-    .options(["White", "Rose", "Red"]));
+new RadiobuttonsQuestion()
+.title("Intensity")
+.explanation("Describing the Wines Intensity")
+.options(["Pale", "Medium (-)", "Medium", "Medium (+)", "Deep"]),
 
-quiz.add_question(
-    new RadiobuttonsQuestion()
-    .title("White Colour Detailed")
-    .explanation("Describe the colour in the glass")
-    .options(["lemon-green", "lemon", "gold", "amber", "brown"])
-    .conditions({"Colour": "White"}));
+new RadiobuttonsQuestion()
+.title("Colour")
+.explanation("What is the Wines Colour")
+.options(["White", "Rose", "Red"]),
 
-quiz.add_question(
-    new CheckboxesQuestion()
-    .title("Mouth Feel")
-    .explanation("Describe the feeling in the mouth:")
-    .options(["Soft", "Dry", "Acidic", "Lumpy", "Cooling"]));
+new RadiobuttonsQuestion()
+.title("White Colour Detailed")
+.explanation("Describe the colour in the glass")
+.options(["lemon-green", "lemon", "gold", "amber", "brown"])
+.conditions({"Colour": "White"}),
 
-quiz.add_question(
-    new LongtextQuestion()
-    .title("Closing Notes")
-    .explanation("Any final notes not covered yet?"));
+new CheckboxesQuestion()
+.title("Mouth Feel")
+.explanation("Describe the feeling in the mouth:")
+.options(["Soft", "Dry", "Acidic", "Lumpy", "Cooling"]),
+
+new LongtextQuestion()
+.title("Closing Notes")
+.explanation("Any final notes not covered yet?"),
+
+]);
+
+quiz.start();
