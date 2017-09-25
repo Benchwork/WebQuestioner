@@ -25,7 +25,7 @@ your responses to the questions.
 
 4) Edit questions.js to suit your needs
 
-
+Alternatively place in the root of your web server. 
 
 
 
